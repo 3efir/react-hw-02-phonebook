@@ -8,34 +8,34 @@ class ContactForm extends Component {
     number: '',
   }
 
-  onAddContact = (evt) => {
+  handleFormSubmit = (evt) => {
     evt.preventDefault();
     if (!this.state.name.trim() || !this.state.number.trim()) {
       alert('Fields Name and Number are required!');
       return false;
     }
-    this.props.addContact(this.state.name, this.state.number);
+    this.props.onAddContact(this.state.name, this.state.number);
     this.setState({ name: '', number: '' });
   }
 
-  onChangeName = (evt) => {
+  handleChangeName = (evt) => {
     this.setState({ name: evt.target.value });
   }
 
-  onChangeNumber = (evt) => {
+  handleChangeNumber = (evt) => {
     this.setState({ number: evt.target.value });
   }
 
   render() {
     return (
-      <form className="contact-form" onSubmit={this.onAddContact}>
+      <form className="contact-form" onSubmit={this.handleFormSubmit}>
         <label className="contact-form__label">
           Name
           <input
             className="contact-form__text-input"
             type="text"
             value={this.state.name}
-            onChange={this.onChangeName}
+            onChange={this.handleChangeName}
           />
         </label>
 
@@ -45,7 +45,7 @@ class ContactForm extends Component {
             className="contact-form__text-input"
             type="text"
             value={this.state.number}
-            onChange={this.onChangeNumber}
+            onChange={this.handleChangeNumber}
           />
         </label>
 
@@ -60,7 +60,7 @@ class ContactForm extends Component {
 };
 
 ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
+  onAddContact: PropTypes.func.isRequired,
 };
 
 export default ContactForm;

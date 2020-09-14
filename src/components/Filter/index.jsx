@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Filter = ({ filterCallback }) => {
+const Filter = ({ onFilterChange }) => {
   return (
     <label>
       Find contacts by name
       <input
         type="text"
-        onChange={(e) => filterCallback(e.target.value)}
+        onChange={(e) => onFilterChange(e.target.value)}
       />
     </label>
   );
 };
 
 Filter.propTypes = {
-  filterCallback: PropTypes.func.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
 };
 
 export default Filter;

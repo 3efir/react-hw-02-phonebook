@@ -16,9 +16,9 @@ class App extends Component {
       alert(`${name} is already in contacts`);
       return false;
     }
-    this.setState({
-      contacts: [...this.state.contacts, { id: uuidv4(), name, number }],
-    });
+    this.setState((prevState) => ({
+      contacts: [...prevState.contacts, { id: uuidv4(), name, number }],
+    }));
   }
 
   handleFilterChange = (text) => {
@@ -26,9 +26,9 @@ class App extends Component {
   }
 
   handleDeleteContact = (id) => {
-    this.setState({
-      contacts: this.state.contacts.filter((item) => item.id !== id)
-    });
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter((item) => item.id !== id)
+    }));
   }
 
   getFilteredList = () => {
@@ -44,16 +44,16 @@ class App extends Component {
       <div className="app-root">
         <h1>Phonebook</h1>
         <ContactForm
-          addContact={this.handleAddContact}
+          onAddContact={this.handleAddContact}
         />
 
         <h1>Contacts</h1>
         <Filter
-          filterCallback={this.handleFilterChange}
+          onFilterChange={this.handleFilterChange}
         />
         <ContactList
           list={this.getFilteredList()}
-          deleteCallback={this.handleDeleteContact}
+          onDeleteContact={this.handleDeleteContact}
         />
       </div>
     )

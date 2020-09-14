@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 
-const ContactList = ({ list, deleteCallback }) => {
+const ContactList = ({ list, onDeleteContact }) => {
   return (
     <ul>
       {list.map((item) => (
@@ -11,7 +11,7 @@ const ContactList = ({ list, deleteCallback }) => {
           id={item.id}
           name={item.name}
           number={item.number}
-          deleteCallback={deleteCallback}
+          onDeleteContact={onDeleteContact}
         />
       ))}
     </ul>
@@ -24,7 +24,7 @@ ContactList.propTypes = {
     name: PropTypes.string,
     number: PropTypes.string,
   })),
-  deleteCallback: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;
